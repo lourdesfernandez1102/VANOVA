@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VANOVA · Tu dispositivo en su mejor versión</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<header><div class="logo"><svg viewBox="0 0 40 40" role="img" aria-label="Logo de VANOVA"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pri2)"/><stop offset="1" style="stop-color:var(--pri)"/></linearGradient></defs><rect width="40" height="40" rx="11" fill="url(#lg)"/><path d="M9 14 L19 30 L28 15" fill="none" stroke="var(--onpri)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 5 L32.7 9.3 L37 11 L32.7 12.7 L31 17 L29.3 12.7 L25 11 L29.3 9.3 Z" fill="#ffc83d"/></svg><span>VAN<i>OVA</i></span></div><div class="open">Abierto 09:00 - 20:00</div></header>
+
+<section class="view on" id="v-inicio">
+  <div class="hero">
+    <h1>Tu dispositivo en su mejor versión</h1>
+    <p>Diagnóstico gratuito, repuestos de calidad y seguimiento de tu reparación en tiempo real.</p>
+    <a class="btn w" href="#cita">Reservar cita ahora</a>
+    <a class="btn g" href="#seguimiento">Consultar estado</a>
+  </div>
+  <div class="card">
+    <h3>Seguimiento de reparación</h3>
+    <div class="row"><input type="text" id="homeCode" placeholder="Código, ej. VAN-94820" aria-label="Código de seguimiento"><button class="btn" id="homeGo" style="flex:0 0 52px">→</button></div>
+  </div>
+  <h2>Selecciona tu equipo</h2><p class="sub">Diagnóstico de precisión multimarca</p>
+  <div class="grid2">
+    <div class="dev">Móvil<small>Desde 29 €</small></div><div class="dev">Tablet<small>Cristal y panel</small></div>
+    <div class="dev">Portátil<small>Hardware y software</small></div><div class="dev">Smartwatch<small>Sellado y batería</small></div>
+  </div>
+  <h2>¿Por qué VANOVA?</h2><p class="sub">Calidad y transparencia en cada paso</p>
+  <div class="card feat"><b>30′</b><div><h3>Diagnóstico en 30 minutos</h3><p>Revisamos placa, consumo y sensores para localizar la avería rápido.</p></div></div>
+  <div class="card feat"><b>✔</b><div><h3>Repuestos con garantía</h3><p>Piezas de calidad con 6 meses de garantía en la reparación.</p></div></div>
+  <div class="card feat"><b>6</b><div><h3>Trazabilidad en 6 etapas</h3><p>Sigue tu equipo desde que lo entregas hasta que lo recoges.</p></div></div>
+  <div class="card"><h3>Taller Central VANOVA</h3><p class="sub" style="margin:0 0 12px">Calle Tucán 14, 29640 Fuengirola · Hoy abierto hasta las 20:00</p>
+    <div class="row"><a class="btn s" href="https://wa.me/34636127693">WhatsApp</a><a class="btn s" href="tel:+34636127693">Llamar</a></div></div>
+</section>
+
+<section class="view" id="v-cita">
+  <h1>Reserva cita de reparación</h1><p class="sub">Diagnóstico inicial sin coste. Presupuesto cerrado antes de empezar.</p>
+  <div class="card"><h3>1. Tus datos</h3>
+    <label class="l" for="fn">Nombre y apellidos *</label><input type="text" id="fn" autocomplete="name" placeholder="Ej. Carlos Mendoza">
+    <label class="l" for="ft">Teléfono móvil *</label><input type="tel" id="ft" autocomplete="tel" placeholder="612 345 678">
+    <label class="l" for="fe">Correo electrónico *</label><input type="email" id="fe" autocomplete="email" placeholder="carlos@email.com"></div>
+  <div class="card"><h3>2. Tu dispositivo</h3>
+    <label class="l">Tipo de equipo</label><div class="chips" id="gType"></div>
+    <label class="l">Marca</label><div class="chips" id="gBrand"></div>
+    <label class="l" for="fm">Modelo exacto</label><input type="text" id="fm" placeholder="Ej. iPhone 14 Pro"></div>
+  <div class="card"><h3>3. ¿Qué le ocurre?</h3><p class="sub">Marca uno o más síntomas</p><div id="syms"></div>
+    <label class="l" for="fd">Cuéntanos más (opcional)</label><textarea id="fd" rows="3"></textarea></div>
+  <div class="card"><h3>4. Fecha y hora</h3>
+    <div class="dates" id="gDate"></div><label class="l">Hora</label><div class="chips" id="gTime"></div></div>
+  <div class="card" id="sum" style="background:var(--soft)"><h3>Resumen</h3><p class="sub" style="margin:0" id="sumTxt">Completa el formulario para ver el resumen.</p></div>
+  <div class="err" id="err" role="alert"></div>
+  <button class="btn" id="confirm" style="margin-top:12px">Confirmar reserva y generar código</button>
+</section>
+
+<section class="view" id="v-confirmada">
+  <div class="card" style="text-align:center"><div class="tag">Registro confirmado</div><h1 style="margin-top:12px">¡Cita confirmada!</h1><p class="sub">Hemos registrado tu solicitud. Presenta el código al llegar al taller.</p></div>
+  <div class="card"><h3>Código de seguimiento</h3><div class="qr" id="qr" aria-hidden="true"></div><div class="code" id="cCode"></div>
+    <button class="btn s" id="copy">Copiar código</button></div>
+  <div class="card"><h3>Detalle</h3><div id="cDet" class="sub"></div></div>
+  <a class="btn" id="goTrack" href="#seguimiento">Ver seguimiento de este dispositivo</a>
+  <p class="foot"><a href="#inicio" style="color:var(--mut)">← Volver al inicio</a></p>
+</section>
+
+<section class="view" id="v-seguimiento">
+  <h1>Seguimiento en directo</h1>
+  <div class="row"><input type="text" id="tCode" placeholder="VAN-94820" aria-label="Código"><button class="btn" id="tGo" style="flex:0 0 110px">Consultar</button></div>
+  <div id="tRes"></div>
+</section>
+
+<section class="view" id="v-ayuda">
+  <h1>Ayuda</h1><p class="sub">Respuestas rápidas a las dudas más habituales.</p>
+  <details><summary>¿Cuánto cuesta el diagnóstico?</summary><p>Es gratuito y sin compromiso. Solo pagas si aceptas el presupuesto.</p></details>
+  <details><summary>¿Cuánto tarda una reparación?</summary><p>Las más comunes, como pantalla o batería, suelen estar listas en el día.</p></details>
+  <details><summary>¿Qué garantía tiene?</summary><p>6 meses de garantía en la pieza y la mano de obra.</p></details>
+  <details><summary>He perdido mi código</summary><p>Llámanos o escríbenos por WhatsApp con tu nombre y teléfono y te lo recordamos.</p></details>
+  <details><summary>¿Qué datos guardáis y para qué?</summary><p>Solo nombre, teléfono y email para gestionar tu reparación, conforme al RGPD.</p></details>
+  <div class="row" style="margin-top:14px"><a class="btn s" href="https://wa.me/34600000000">WhatsApp</a><a class="btn s" href="tel:+34600000000">Llamada directa</a></div>
+</section>
+<p class="foot">Prototipo de demostración · los datos se borran al recargar</p>
+</div>
+
+<nav aria-label="Principal"><div>
+<a href="#inicio" data-v="inicio"><span>⌂</span>Inicio</a><a href="#cita" data-v="cita"><span>▦</span>Pedir cita</a>
+<a href="#seguimiento" data-v="seguimiento"><span>◎</span>Seguimiento</a><a href="#ayuda" data-v="ayuda"><span>?</span>Ayuda</a>
+</div></nav>
+
+<script src="app.js"></script>
+</body>
+</html>
